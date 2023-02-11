@@ -1,14 +1,11 @@
-name: Terraform CI
+name: Generate Documentation
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "*" ]
+  - pull_request
 
 jobs:
-  validate:
-    name: Terraform CI
+  docs:
+    name: Generate Documentation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,5 +22,14 @@ jobs:
         id: init
         run: terraform init
 
-      - name: Run a Terraform validate
-        run: terraform validate
+      - name: Run a Terraform fmt
+        id: format
+        run: terraform fmt
+
+      - name: Render terraform docs and push changes back to PR
+        uses: terraform-docs/gh-actions@main
+        with:
+          working-dir: .
+          output-file: README.md
+          output-method: inject
+          git-push: "true"

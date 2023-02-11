@@ -7,7 +7,7 @@ locals {
 module "consul" {
   source       = "app.terraform.io/logistic/consul/helm"
   app_name     = local.app_name
-  namespace    = var.namespace
+  namespace    = var.tooling_namespace
   datacenter   = var.stack
   ingress_host = local.consul_host
   ingress_annotations = {
