@@ -1,9 +1,11 @@
+variable "region" {}
+
 variable "stack" {
   type        = string
   description = "Stack name"
 }
 
-variable "namespace" {
+variable "tooling_namespace" {
   type        = string
   description = "Namespace for Consul release"
 }
@@ -14,6 +16,7 @@ variable "domain" {
 }
 
 variable "create_ingress" {
-  type = bool
+  type        = bool
   description = "Flag to create ingress"
+  default     = true
 }

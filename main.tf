@@ -7,7 +7,7 @@ locals {
 module "consul" {
   source       = "app.terraform.io/logistic/consul/helm"
   app_name     = local.app_name
-  namespace    = var.namespace
+  namespace    = var.tooling_namespace
   datacenter   = var.stack
   ingress_host = local.consul_host
   ingress_annotations = {
@@ -17,7 +17,7 @@ module "consul" {
 }
 
 module "records" {
-  count = var.create_ingress ? 1 : 0
+  count  = var.create_ingress ? 1 : 0
   source = "terraform-aws-modules/route53/aws//modules/records"
 
   zone_name = data.aws_route53_zone.zone[0].name
