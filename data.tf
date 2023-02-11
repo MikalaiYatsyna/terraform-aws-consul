@@ -1,11 +1,11 @@
 data "aws_lb" "ingress_lb" {
   count = var.create_ingress ? 1 : 0
-  name       = var.stack
+  name  = var.stack
 }
 
 data "aws_route53_zone" "zone" {
   count = var.create_ingress ? 1 : 0
-  name = var.domain
+  name  = var.domain
 }
 
 data "aws_eks_cluster" "eks_cluster" {

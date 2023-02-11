@@ -16,7 +16,7 @@ variable "domain" {
 }
 
 variable "create_ingress" {
-  type = bool
+  type        = bool
   description = "Flag to create ingress"
-  default = true
+  default     = true
 }
