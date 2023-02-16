@@ -1,6 +1,8 @@
 data "aws_lb" "ingress_lb" {
   count = var.create_ingress ? 1 : 0
-  name  = var.stack
+  tags = {
+    Name = "${var.stack}-lb"
+  }
 }
 
 data "aws_route53_zone" "zone" {

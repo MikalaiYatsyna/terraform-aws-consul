@@ -1,12 +1,11 @@
 locals {
-  app_name         = "consul"
-  consul_subdomain = "${local.app_name}.${var.stack}"
+  consul_subdomain = "${var.app_name}.${var.stack}"
   consul_host      = "${local.consul_subdomain}.${var.domain}"
 }
 
 module "consul" {
   source       = "app.terraform.io/logistic/consul/helm"
-  app_name     = local.app_name
+  app_name     = var.app_name
   namespace    = var.tooling_namespace
   datacenter   = var.stack
   ingress_host = local.consul_host
