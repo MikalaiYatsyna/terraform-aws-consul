@@ -32,6 +32,7 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_app_name"></a> [app\_name](#input\_app\_name) | Consul app name | `any` | n/a | yes |
 | <a name="input_create_ingress"></a> [create\_ingress](#input\_create\_ingress) | Flag to create ingress | `bool` | `true` | no |
 | <a name="input_domain"></a> [domain](#input\_domain) | Root application domain name | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | n/a | `any` | n/a | yes |
