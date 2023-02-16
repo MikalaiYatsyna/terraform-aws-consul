@@ -1,5 +1,9 @@
 variable "region" {}
 
+variable "app_name" {
+  description = "Consul app name"
+}
+
 variable "stack" {
   type        = string
   description = "Stack name"
