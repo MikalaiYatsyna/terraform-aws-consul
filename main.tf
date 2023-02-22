@@ -4,15 +4,18 @@ locals {
 }
 
 module "consul" {
-  source       = "app.terraform.io/logistic/consul/helm"
-  app_name     = var.app_name
-  namespace    = var.tooling_namespace
-  datacenter   = var.stack
-  ingress_host = local.consul_host
+  source           = "app.terraform.io/logistic/consul/helm"
+  version          = "0.0.2"
+  app_name         = var.app_name
+  namespace        = var.tooling_namespace
+  datacenter       = var.stack
+  server_replicas  = var.server_replicas
+  bootstrap_expect = var.bootstrap_expect
+  ingress_host     = local.consul_host
+  ingress_enabled  = var.create_ingress
   ingress_annotations = {
     "kubernetes.io/ingress.class" = "nginx"
   }
-  ingress_enabled = var.create_ingress
 }
 
 module "records" {
