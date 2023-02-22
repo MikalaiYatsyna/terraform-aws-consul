@@ -16,7 +16,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_consul"></a> [consul](#module\_consul) | app.terraform.io/logistic/consul/helm | 0.0.2-snapshot |
+| <a name="module_consul"></a> [consul](#module\_consul) | app.terraform.io/logistic/consul/helm | 0.0.2 |
 | <a name="module_records"></a> [records](#module\_records) | terraform-aws-modules/route53/aws//modules/records | n/a |
 
 ## Resources
