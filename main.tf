@@ -1,6 +1,5 @@
 locals {
-  consul_subdomain = "${var.app_name}.${var.stack}"
-  consul_host      = "${local.consul_subdomain}.${var.domain}"
+  consul_host      = "${var.app_name}.${var.domain}"
 }
 
 module "consul" {
@@ -25,7 +24,7 @@ module "records" {
   zone_name = data.aws_route53_zone.zone[0].name
   records = [
     {
-      name    = local.consul_subdomain
+      name    = var.app_name
       type    = "CNAME"
       records = [data.aws_lb.ingress_lb[0].dns_name]
       ttl     = 30
