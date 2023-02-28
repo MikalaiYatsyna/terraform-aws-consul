@@ -1,5 +1,5 @@
 locals {
-  consul_host      = "${var.app_name}.${var.domain}"
+  consul_host = "${var.app_name}.${var.domain}"
 }
 
 module "consul" {
