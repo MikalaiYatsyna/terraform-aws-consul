@@ -1,11 +1,22 @@
 variable "app_name" {
   type        = string
   description = "Consul app name"
+  default     = "consul"
 }
 
 variable "stack" {
   type        = string
   description = "Stack name"
+}
+
+variable "cluster_name" {
+  type        = string
+  description = "Name of EKS cluster"
+}
+
+variable "lb_arn" {
+  type    = string
+  default = "ARN of NLB for ingress"
 }
 
 variable "tooling_namespace" {
