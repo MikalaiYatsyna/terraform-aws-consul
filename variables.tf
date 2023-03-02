@@ -1,7 +1,7 @@
 variable "app_name" {
   type        = string
   description = "Consul app name"
-  default = "consul"
+  default     = "consul"
 }
 
 variable "stack" {
@@ -10,12 +10,12 @@ variable "stack" {
 }
 
 variable "cluster_name" {
-  type = string
+  type        = string
   description = "Name of EKS cluster"
 }
 
 variable "lb_arn" {
-  type = string
+  type    = string
   default = "ARN of NLB for ingress"
 }
 

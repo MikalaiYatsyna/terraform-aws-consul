@@ -30,5 +30,5 @@ module "records" {
       ttl     = 30
     }
   ]
-  
+
 }

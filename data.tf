@@ -1,6 +1,6 @@
 data "aws_lb" "ingress_lb" {
   count = var.create_ingress ? 1 : 0
-  arn = var.lb_arn
+  arn   = var.lb_arn
 }
 
 data "aws_route53_zone" "zone" {

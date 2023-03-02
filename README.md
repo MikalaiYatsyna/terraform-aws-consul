@@ -32,10 +32,12 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app_name"></a> [app\_name](#input\_app\_name) | Consul app name | `string` | n/a | yes |
+| <a name="input_app_name"></a> [app\_name](#input\_app\_name) | Consul app name | `string` | `"consul"` | no |
 | <a name="input_bootstrap_expect"></a> [bootstrap\_expect](#input\_bootstrap\_expect) | Minimum numbers of replicas to consider service ready | `number` | `1` | no |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of EKS cluster | `string` | n/a | yes |
 | <a name="input_create_ingress"></a> [create\_ingress](#input\_create\_ingress) | Flag to create ingress | `bool` | `true` | no |
 | <a name="input_domain"></a> [domain](#input\_domain) | Root application domain name | `string` | n/a | yes |
+| <a name="input_lb_arn"></a> [lb\_arn](#input\_lb\_arn) | n/a | `string` | `"ARN of NLB for ingress"` | no |
 | <a name="input_server_replicas"></a> [server\_replicas](#input\_server\_replicas) | Number of replicas to create | `number` | `1` | no |
 | <a name="input_stack"></a> [stack](#input\_stack) | Stack name | `string` | n/a | yes |
 | <a name="input_tooling_namespace"></a> [tooling\_namespace](#input\_tooling\_namespace) | Namespace for Consul release | `string` | n/a | yes |
