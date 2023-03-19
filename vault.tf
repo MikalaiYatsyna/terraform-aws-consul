@@ -43,7 +43,7 @@ resource "vault_mount" "connect_root" {
 
 data "vault_policy_document" "consul_gossip" {
   rule {
-    path         = local.consul_gossip_secret_path
+    path         = local.consul_gossip_read_path
     capabilities = ["read"]
     description  = "Allow to read Consul gossip encryption key"
   }

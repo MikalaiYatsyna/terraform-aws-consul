@@ -5,7 +5,8 @@ locals {
   connect_pki_path              = "connect-root"
   connect_intermediate_pki_path = "connect-intermediate-${var.stack}"
   gossip_key                    = "gossip"
-  consul_gossip_secret_path     = "${var.kv_backend}/data/consul/gossip"
+  consul_gossip_secret_path     = "consul/gossip"
+  consul_gossip_read_path     = "${var.kv_backend}/data/${local.consul_gossip_secret_path}"
 }
 
 resource "helm_release" "consul-server" {
@@ -29,7 +30,7 @@ resource "helm_release" "consul-server" {
           }
         }
         gossipEncryption = {
-          secretName = local.consul_gossip_secret_path
+          secretName = local.consul_gossip_read_path
           secretKey  = local.gossip_key
         }
         secretsBackend = {
