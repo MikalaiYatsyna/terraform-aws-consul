@@ -62,7 +62,6 @@ variable "vault_k8s_path" {
 variable "pki_backend" {
   type = string
   description = "PKI backend path"
-  default = "pki"
 }
 
 variable "vault_server_cert_secret" {
