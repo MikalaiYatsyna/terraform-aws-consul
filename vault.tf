@@ -4,7 +4,7 @@ resource "random_password" "gossip_key" {
 }
 
 resource "vault_generic_secret" "consul_gossip_key" {
-  path      = "${var.kv_backend}/${local.consul_gossip_secret_path}"
+  path = "${var.kv_backend}/${local.consul_gossip_secret_path}"
   data_json = jsonencode({
     (local.gossip_key) = random_password.gossip_key.result
   })
@@ -18,8 +18,8 @@ resource "vault_pki_secret_backend_root_cert" "consul_root_cert" {
 }
 
 resource "vault_pki_secret_backend_role" "consul_server" {
-  backend         = var.pki_backend
-  name            = vault_kubernetes_auth_backend_role.consul_server.role_name
+  backend = var.pki_backend
+  name    = vault_kubernetes_auth_backend_role.consul_server.role_name
   allowed_domains = [
     "consul-server",
     "consul-server.${var.namespace}",
@@ -132,7 +132,7 @@ resource "vault_kubernetes_auth_backend_role" "consul_server" {
   bound_service_account_names      = ["consul-server"]
   token_ttl                        = 60 * 60 * 24 # 1 day
   token_max_ttl                    = 60 * 60 * 24 # 1 day
-  token_policies                   = [
+  token_policies = [
     vault_policy.consul_gossip.name, vault_policy.consul_server.name,
     vault_policy.connect.name, vault_policy.ca.name
   ]
