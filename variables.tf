@@ -19,7 +19,7 @@ variable "domain" {
 }
 
 variable "certificate_issuer" {
-  type = string
+  type        = string
   description = "Cert manager issuer name"
 }
 
@@ -36,15 +36,20 @@ variable "bootstrap_expect" {
 }
 
 variable "api_gateway_version" {
-  type = string
+  type        = string
   description = "Version of Consul API GW"
-  default = "0.5.1"
+  default     = "0.5.1"
 }
 
 
 variable "vault_address" {
   type        = string
   description = "Vault http(s) address"
+}
+
+variable "vault_server_cert_secret" {
+  type        = string
+  description = "Secret containing Vault CA"
 }
 
 variable "vault_token_secret_id" {
@@ -54,17 +59,17 @@ variable "vault_token_secret_id" {
 }
 
 variable "vault_k8s_path" {
-  type = string
+  type        = string
   description = "Vault path of K8s auth"
-  default = "kubernetes"
+  default     = "kubernetes"
 }
 
 variable "pki_backend" {
-  type = string
+  type        = string
   description = "PKI backend path"
 }
 
-variable "vault_server_cert_secret" {
-  type = string
-  description = "Secret containing Vault CA"
+variable "kv_backend" {
+  type        = string
+  description = "PKI backend path"
 }

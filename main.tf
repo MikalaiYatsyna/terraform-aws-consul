@@ -1,10 +1,11 @@
 locals {
-  app_name              = "consul"
-  cname                 = "${local.app_name}.${var.namespace}"
-  ingress_host          = "${local.cname}.${var.domain}"
-  pki_path              = "connect-root"
-  intermediate_pki_path = "connect-intermediate-${var.stack}"
-  gossip_key = "gossip"
+  app_name                      = "consul"
+  cname                         = "${local.app_name}.${var.namespace}"
+  ingress_host                  = "${local.cname}.${var.domain}"
+  connect_pki_path              = "connect-root"
+  connect_intermediate_pki_path = "connect-intermediate-${var.stack}"
+  gossip_key                    = "gossip"
+  consul_gossip_secret_path     = "${var.kv_backend}/data/consul/gossip"
 }
 
 resource "helm_release" "consul-server" {
@@ -28,7 +29,7 @@ resource "helm_release" "consul-server" {
           }
         }
         gossipEncryption = {
-          secretName = "kv-v2/data/consul/gossip"
+          secretName = local.consul_gossip_secret_path
           secretKey  = local.gossip_key
         }
         secretsBackend = {
@@ -39,12 +40,12 @@ resource "helm_release" "consul-server" {
             consulCARole : vault_kubernetes_auth_backend_role.ca.role_name
             connectCA        = {
               address             = "https://vault.${var.namespace}.svc"
-              rootPKIPath         = local.pki_path
-              intermediatePKIPath = local.intermediate_pki_path
+              rootPKIPath         = local.connect_pki_path
+              intermediatePKIPath = local.connect_intermediate_pki_path
             }
             ca = {
               secretName = var.vault_server_cert_secret
-              secretKey = "ca.crt"
+              secretKey  = "ca.crt"
             }
           }
         }

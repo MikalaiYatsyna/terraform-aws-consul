@@ -4,7 +4,7 @@ resource "random_password" "gossip_key" {
 }
 
 resource "vault_generic_secret" "consul_gossip_key" {
-  path      = "kv-v2/consul/gossip"
+  path      = "${var.kv_backend}/${local.consul_gossip_secret_path}"
   data_json = jsonencode({
     (local.gossip_key) = random_password.gossip_key.result
   })
@@ -38,12 +38,12 @@ resource "vault_pki_secret_backend_role" "consul_server" {
 resource "vault_mount" "connect_root" {
   path        = "connect-root"
   type        = "pki"
-  description = "PKI secrets engine"
+  description = "PKI secrets engine for Consul Connect"
 }
 
 data "vault_policy_document" "consul_gossip" {
   rule {
-    path         = "kv-v2/data/consul/gossip"
+    path         = local.consul_gossip_secret_path
     capabilities = ["read"]
     description  = "Allow to read Consul gossip encryption key"
   }
@@ -56,15 +56,15 @@ resource "vault_policy" "consul_gossip" {
 
 data "vault_policy_document" "consul_server" {
   rule {
-    path         = "kv-v2/data/consul-server"
+    path         = "${var.kv_backend}/data/consul-server"
     capabilities = ["read"]
   }
   rule {
-    path         = "pki/issue/consul-server"
+    path         = "${var.pki_backend}/issue/consul-server"
     capabilities = ["read", "update"]
   }
   rule {
-    path         = "pki/cert/ca"
+    path         = "${var.pki_backend}/cert/ca"
     capabilities = ["read"]
   }
 }
@@ -76,7 +76,7 @@ resource "vault_policy" "consul_server" {
 
 data "vault_policy_document" "ca" {
   rule {
-    path         = "pki/cert/ca"
+    path         = "${var.pki_backend}/cert/ca"
     capabilities = ["read"]
   }
 }
@@ -90,23 +90,23 @@ resource "vault_policy" "ca" {
 # Service mesh policy
 data "vault_policy_document" "service_mesh" {
   rule {
-    path         = "/sys/mounts/${local.pki_path}"
+    path         = "/sys/mounts/${local.connect_pki_path}"
     capabilities = ["create", "read", "update", "delete", "list"]
   }
   rule {
-    path         = "/sys/mounts/${local.intermediate_pki_path}"
+    path         = "/sys/mounts/${local.connect_intermediate_pki_path}"
     capabilities = ["create", "read", "update", "delete", "list"]
   }
   rule {
-    path         = "/sys/mounts/${local.intermediate_pki_path}/tune"
+    path         = "/sys/mounts/${local.connect_intermediate_pki_path}/tune"
     capabilities = ["update"]
   }
   rule {
-    path         = "/${local.pki_path}/*"
+    path         = "/${local.connect_pki_path}/*"
     capabilities = ["create", "read", "update", "delete", "list"]
   }
   rule {
-    path = "/${local.intermediate_pki_path}/*"
+    path = "/${local.connect_intermediate_pki_path}/*"
 
     capabilities = ["create", "read", "update", "delete", "list"]
   }
