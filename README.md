@@ -12,6 +12,8 @@ No requirements.
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 4.59.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.9.0 |
+| <a name="provider_http"></a> [http](#provider\_http) | 3.2.1 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.18.1 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
 | <a name="provider_vault"></a> [vault](#provider\_vault) | 3.14.0 |
 
@@ -24,6 +26,8 @@ No modules.
 | Name | Type |
 |------|------|
 | [helm_release.consul-server](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [kubernetes_manifest.consul_crds](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
+| [kubernetes_manifest.kubernetes_crds](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
 | [random_password.gossip_key](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [vault_generic_secret.consul_gossip_key](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/generic_secret) | resource |
 | [vault_kubernetes_auth_backend_role.ca](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/kubernetes_auth_backend_role) | resource |
@@ -39,6 +43,8 @@ No modules.
 | [aws_eks_cluster.eks_cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster) | data source |
 | [aws_eks_cluster_auth.eks_cluster_auth](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster_auth) | data source |
 | [aws_secretsmanager_secret_version.root_token](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/secretsmanager_secret_version) | data source |
+| [http_http.consul_crd_content](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
+| [http_http.kubernetes_crd_content](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
 | [vault_policy_document.ca](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/policy_document) | data source |
 | [vault_policy_document.consul_gossip](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/policy_document) | data source |
 | [vault_policy_document.consul_server](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/policy_document) | data source |
@@ -53,6 +59,7 @@ No modules.
 | <a name="input_certificate_issuer"></a> [certificate\_issuer](#input\_certificate\_issuer) | Cert manager issuer name | `string` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of EKS cluster | `string` | n/a | yes |
 | <a name="input_domain"></a> [domain](#input\_domain) | Root application domain name | `string` | n/a | yes |
+| <a name="input_kubernetes_api_gw_version"></a> [kubernetes\_api\_gw\_version](#input\_kubernetes\_api\_gw\_version) | Version of Kubernetes sigs API GW | `string` | `"0.5.0"` | no |
 | <a name="input_kv_backend"></a> [kv\_backend](#input\_kv\_backend) | PKI backend path | `string` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace for Consul release | `string` | n/a | yes |
 | <a name="input_pki_backend"></a> [pki\_backend](#input\_pki\_backend) | PKI backend path | `string` | n/a | yes |

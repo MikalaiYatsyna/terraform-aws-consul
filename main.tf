@@ -10,7 +10,12 @@ locals {
 }
 
 resource "helm_release" "consul-server" {
-  depends_on = [vault_pki_secret_backend_root_cert.consul_root_cert, vault_generic_secret.consul_gossip_key]
+  depends_on = [
+    vault_pki_secret_backend_root_cert.consul_root_cert,
+    vault_generic_secret.consul_gossip_key,
+    kubernetes_manifest.kubernetes_crds,
+    kubernetes_manifest.consul_crds
+  ]
   name       = local.app_name
   namespace  = var.namespace
   atomic     = true

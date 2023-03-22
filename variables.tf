@@ -41,6 +41,11 @@ variable "api_gateway_version" {
   default     = "0.5.1"
 }
 
+variable "kubernetes_api_gw_version" {
+  type        = string
+  description = "Version of Kubernetes sigs API GW"
+  default     = "0.5.0"
+}
 
 variable "vault_address" {
   type        = string
