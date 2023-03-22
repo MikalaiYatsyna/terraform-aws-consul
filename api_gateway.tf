@@ -10,7 +10,7 @@ locals {
     "gateway.networking.k8s.io_tlsroutes.yaml",
     "gateway.networking.k8s.io_udproutes.yaml"
   ]
-  consul_crds_path  = "https://raw.githubusercontent.com/hashicorp/consul-api-gateway/${var.api_gateway_version}/config/crd/bases/",
+  consul_crds_path  = "https://raw.githubusercontent.com/hashicorp/consul-api-gateway/${var.api_gateway_version}/config/crd/bases/"
   consul_crds_files = [
     "api-gateway.consul.hashicorp.com_meshservices.yaml",
     "api-gateway.consul.hashicorp.com_gatewayclassconfigs.yaml"
