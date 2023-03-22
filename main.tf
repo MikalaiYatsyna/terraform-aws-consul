@@ -124,7 +124,7 @@ resource "helm_release" "consul-server" {
         }
       }
       apiGateway = {
-        enabled = false
+        enabled = true
         image   = "hashicorp/consul-api-gateway:${var.api_gateway_version}"
         managedGatewayClass = {
           useHostPorts = true
