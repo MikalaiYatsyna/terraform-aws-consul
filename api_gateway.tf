@@ -1,5 +1,5 @@
 locals {
-  kubernetes_crds_path  = "https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/${var.kubernetes_api_gw_version}/config/crd/experimental"
+  kubernetes_crds_path = "https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/${var.kubernetes_api_gw_version}/config/crd/experimental"
   kubernetes_crds_files = [
     "gateway.networking.k8s.io_gatewayclasses.yaml",
     "gateway.networking.k8s.io_gateways.yaml",
@@ -10,7 +10,7 @@ locals {
     "gateway.networking.k8s.io_tlsroutes.yaml",
     "gateway.networking.k8s.io_udproutes.yaml"
   ]
-  consul_crds_path  = "https://raw.githubusercontent.com/hashicorp/consul-api-gateway/${var.api_gateway_version}/config/crd/bases/"
+  consul_crds_path = "https://raw.githubusercontent.com/hashicorp/consul-api-gateway/${var.api_gateway_version}/config/crd/bases/"
   consul_crds_files = [
     "api-gateway.consul.hashicorp.com_meshservices.yaml",
     "api-gateway.consul.hashicorp.com_gatewayclassconfigs.yaml"
