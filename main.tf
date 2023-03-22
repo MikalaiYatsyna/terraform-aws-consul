@@ -10,7 +10,12 @@ locals {
 }
 
 resource "helm_release" "consul-server" {
-  depends_on = [vault_pki_secret_backend_root_cert.consul_root_cert, vault_generic_secret.consul_gossip_key]
+  depends_on = [
+    vault_pki_secret_backend_root_cert.consul_root_cert,
+    vault_generic_secret.consul_gossip_key,
+    kubernetes_manifest.kubernetes_crds,
+    kubernetes_manifest.consul_crds
+  ]
   name       = local.app_name
   namespace  = var.namespace
   atomic     = true
@@ -22,10 +27,10 @@ resource "helm_release" "consul-server" {
       global = {
         name       = local.app_name
         datacenter = var.stack
-        tls = {
+        tls        = {
           enabled           = true
           enableAutoEncrypt = true
-          caCert = {
+          caCert            = {
             secretName = "${var.pki_backend}/cert/ca"
           }
         }
@@ -39,7 +44,7 @@ resource "helm_release" "consul-server" {
             consulServerRole = vault_kubernetes_auth_backend_role.consul_server.role_name
             consulClientRole : vault_kubernetes_auth_backend_role.consul_client.role_name
             consulCARole : vault_kubernetes_auth_backend_role.ca.role_name
-            connectCA = {
+            connectCA        = {
               address             = "https://vault.${var.namespace}.svc"
               rootPKIPath         = local.connect_pki_path
               intermediatePKIPath = local.connect_intermediate_pki_path
@@ -58,15 +63,15 @@ resource "helm_release" "consul-server" {
         }
       }
       server = {
-        replicas = var.server_replicas
+        replicas   = var.server_replicas
         bootstrapExpect : var.bootstrap_expect
         serverCert = {
           secretName : "${var.pki_backend}/issue/consul-server"
         }
       }
       syncCatalog = {
-        enabled = true
-        default = true
+        enabled          = true
+        default          = true
         consulNamespaces = {
           mirroringK8S      = true
           k8sDenyNamespaces = ["kube-system", "kube-public", "default"]
@@ -81,9 +86,9 @@ resource "helm_release" "consul-server" {
         }
         ingress = {
           enabled = true
-          hosts = [
+          hosts   = [
             {
-              host = local.ingress_host
+              host  = local.ingress_host
               paths = [
                 "/"
               ]
@@ -92,7 +97,7 @@ resource "helm_release" "consul-server" {
           tls = [
             {
               secretName = "${local.app_name}-ingress-cert"
-              hosts = [
+              hosts      = [
                 local.ingress_host
               ]
             }
@@ -110,7 +115,7 @@ resource "helm_release" "consul-server" {
         }
       }
       connectInject = {
-        enabled = true
+        enabled          = true
         transparentProxy = {
           transparentProxy = true
         }
@@ -119,8 +124,8 @@ resource "helm_release" "consul-server" {
         }
       }
       apiGateway = {
-        enabled = false
-        image   = "hashicorp/consul-api-gateway:${var.api_gateway_version}"
+        enabled             = false
+        image               = "hashicorp/consul-api-gateway:${var.api_gateway_version}"
         managedGatewayClass = {
           useHostPorts = true
         }
