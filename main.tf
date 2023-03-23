@@ -2,11 +2,13 @@ locals {
   app_name                      = "consul"
   cname                         = "${local.app_name}.${var.namespace}"
   ingress_host                  = "${local.cname}.${var.domain}"
+  consul_address                = "https://${local.ingress_host}"
   connect_pki_path              = "connect-root"
   connect_intermediate_pki_path = "connect-intermediate-${var.stack}"
   gossip_key                    = "gossip"
   consul_gossip_secret_path     = "consul/gossip"
   consul_gossip_read_path       = "${var.kv_backend}/data/${local.consul_gossip_secret_path}"
+
 }
 
 resource "helm_release" "consul-server" {
@@ -56,7 +58,7 @@ resource "helm_release" "consul-server" {
           }
         }
         acls = {
-          manageSystemACLs = false
+          manageSystemACLs = true
         }
         metrics = {
           enabled = false
