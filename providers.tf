@@ -19,5 +19,5 @@ provider "vault" {
 
 provider "consul" {
   address = "https://${local.ingress_host}"
-  token = data.kubernetes_secret.consul_bootstrap_token.data["token"]
+  token   = data.kubernetes_secret.consul_bootstrap_token.data["token"]
 }

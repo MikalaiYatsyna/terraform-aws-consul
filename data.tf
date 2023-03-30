@@ -12,7 +12,7 @@ data "aws_secretsmanager_secret_version" "root_token" {
 
 data "kubernetes_secret" "consul_bootstrap_token" {
   metadata {
-    name = "consul-bootstrap-acl-token"
+    name      = "consul-bootstrap-acl-token"
     namespace = var.namespace
   }
 }
