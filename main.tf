@@ -1,7 +1,6 @@
 locals {
   app_name                      = "consul"
-  cname                         = "${local.app_name}.${var.namespace}"
-  ingress_host                  = "${local.cname}.${var.domain}"
+  ingress_host                  = "${local.app_name}.${var.domain}"
   consul_address                = "https://${local.ingress_host}"
   connect_pki_path              = "connect-root"
   connect_intermediate_pki_path = "connect-intermediate-${var.stack}"
