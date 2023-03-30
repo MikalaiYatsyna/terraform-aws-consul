@@ -11,6 +11,7 @@ No requirements.
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 4.59.0 |
+| <a name="provider_consul"></a> [consul](#provider\_consul) | 2.17.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.9.0 |
 | <a name="provider_http"></a> [http](#provider\_http) | 3.2.1 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.18.1 |
@@ -25,10 +26,13 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [consul_acl_policy.policy](https://registry.terraform.io/providers/hashicorp/consul/latest/docs/resources/acl_policy) | resource |
 | [helm_release.consul-server](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [kubernetes_manifest.consul_crds](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
 | [kubernetes_manifest.kubernetes_crds](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
 | [random_password.gossip_key](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
+| [vault_consul_secret_backend.test](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/consul_secret_backend) | resource |
+| [vault_consul_secret_backend_role.role](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/consul_secret_backend_role) | resource |
 | [vault_generic_secret.consul_gossip_key](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/generic_secret) | resource |
 | [vault_kubernetes_auth_backend_role.ca](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/kubernetes_auth_backend_role) | resource |
 | [vault_kubernetes_auth_backend_role.consul_client](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/kubernetes_auth_backend_role) | resource |
@@ -45,6 +49,7 @@ No modules.
 | [aws_secretsmanager_secret_version.root_token](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/secretsmanager_secret_version) | data source |
 | [http_http.consul_crd_content](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
 | [http_http.kubernetes_crd_content](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
+| [kubernetes_secret.consul_bootstrap_token](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/secret) | data source |
 | [vault_policy_document.ca](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/policy_document) | data source |
 | [vault_policy_document.consul_gossip](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/policy_document) | data source |
 | [vault_policy_document.consul_server](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/policy_document) | data source |

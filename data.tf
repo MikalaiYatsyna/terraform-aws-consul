@@ -9,3 +9,10 @@ data "aws_eks_cluster_auth" "eks_cluster_auth" {
 data "aws_secretsmanager_secret_version" "root_token" {
   secret_id = var.vault_token_secret_id
 }
+
+data "kubernetes_secret" "consul_bootstrap_token" {
+  metadata {
+    name      = "consul-bootstrap-acl-token"
+    namespace = var.namespace
+  }
+}
