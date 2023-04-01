@@ -80,6 +80,6 @@ variable "kv_backend" {
 }
 
 variable "vault_namespace" {
-  type = string
+  type    = string
   default = "Vault namespace"
 }
