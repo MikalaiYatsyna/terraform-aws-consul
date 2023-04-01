@@ -46,7 +46,7 @@ resource "helm_release" "consul-server" {
             consulClientRole : vault_kubernetes_auth_backend_role.consul_client.role_name
             consulCARole : vault_kubernetes_auth_backend_role.ca.role_name
             connectCA = {
-              address             = "https://vault.${var.namespace}.svc"
+              address             = "https://vault.${var.vault_namespace}.svc"
               rootPKIPath         = local.connect_pki_path
               intermediatePKIPath = local.connect_intermediate_pki_path
             }

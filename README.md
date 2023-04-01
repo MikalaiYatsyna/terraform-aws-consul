@@ -72,6 +72,7 @@ No modules.
 | <a name="input_stack"></a> [stack](#input\_stack) | Stack name | `string` | n/a | yes |
 | <a name="input_vault_address"></a> [vault\_address](#input\_vault\_address) | Vault http(s) address | `string` | n/a | yes |
 | <a name="input_vault_k8s_path"></a> [vault\_k8s\_path](#input\_vault\_k8s\_path) | Vault path of K8s auth | `string` | `"kubernetes"` | no |
+| <a name="input_vault_namespace"></a> [vault\_namespace](#input\_vault\_namespace) | n/a | `string` | `"Vault namespace"` | no |
 | <a name="input_vault_server_cert_secret"></a> [vault\_server\_cert\_secret](#input\_vault\_server\_cert\_secret) | Secret containing Vault CA | `string` | n/a | yes |
 | <a name="input_vault_token_secret_id"></a> [vault\_token\_secret\_id](#input\_vault\_token\_secret\_id) | Id vault root token secret in AWS Secret Manager | `string` | n/a | yes |
 
