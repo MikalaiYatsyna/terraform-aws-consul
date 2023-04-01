@@ -35,18 +35,6 @@ variable "bootstrap_expect" {
   default     = 1
 }
 
-variable "api_gateway_version" {
-  type        = string
-  description = "Version of Consul API GW"
-  default     = "0.5.1"
-}
-
-variable "kubernetes_api_gw_version" {
-  type        = string
-  description = "Version of Kubernetes sigs API GW"
-  default     = "0.5.0"
-}
-
 variable "vault_address" {
   type        = string
   description = "Vault http(s) address"
