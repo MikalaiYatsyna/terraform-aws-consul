@@ -78,3 +78,8 @@ variable "kv_backend" {
   type        = string
   description = "PKI backend path"
 }
+
+variable "vault_namespace" {
+  type = string
+  default = "Vault namespace"
+}
