@@ -1,13 +1,13 @@
 locals {
-  app_name                      = "consul"
-  ingress_host                  = "${local.app_name}.${var.domain}"
-  consul_address                = "https://${local.ingress_host}"
-  gossip_key                    = "gossip"
-  consul_gossip_secret_path     = "consul/gossip"
-  consul_gossip_read_path       = "${var.kv_backend}/data/${local.consul_gossip_secret_path}"
-  bootstrap_token_secret_name   =  "consul/bootstrap-acl"
-  bootstrap_token_read_path     =  "${var.kv_backend}/data/${local.bootstrap_token_secret_name}"
-  bootstrap_token_secret_key    = "token"
+  app_name                    = "consul"
+  ingress_host                = "${local.app_name}.${var.domain}"
+  consul_address              = "https://${local.ingress_host}"
+  gossip_key                  = "gossip"
+  consul_gossip_secret_path   = "consul/gossip"
+  consul_gossip_read_path     = "${var.kv_backend}/data/${local.consul_gossip_secret_path}"
+  bootstrap_token_secret_name = "consul/bootstrap-acl"
+  bootstrap_token_read_path   = "${var.kv_backend}/data/${local.bootstrap_token_secret_name}"
+  bootstrap_token_secret_key  = "token"
 }
 
 resource "helm_release" "consul-server" {
@@ -53,8 +53,8 @@ resource "helm_release" "consul-server" {
         acls = {
           manageSystemACLs = true
           bootstrapToken = {
-              secretName = local.bootstrap_token_read_path
-              secretKey = local.bootstrap_token_secret_key
+            secretName = local.bootstrap_token_read_path
+            secretKey  = local.bootstrap_token_secret_key
           }
         }
         metrics = {
