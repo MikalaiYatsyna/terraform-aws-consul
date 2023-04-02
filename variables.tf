@@ -26,25 +26,13 @@ variable "certificate_issuer" {
 variable "server_replicas" {
   type        = number
   description = "Number of replicas to create"
-  default     = 1
+  default     = 3
 }
 
 variable "bootstrap_expect" {
   type        = number
   description = "Minimum numbers of replicas to consider service ready"
-  default     = 1
-}
-
-variable "api_gateway_version" {
-  type        = string
-  description = "Version of Consul API GW"
-  default     = "0.5.1"
-}
-
-variable "kubernetes_api_gw_version" {
-  type        = string
-  description = "Version of Kubernetes sigs API GW"
-  default     = "0.5.0"
+  default     = 3
 }
 
 variable "vault_address" {
@@ -77,9 +65,4 @@ variable "pki_backend" {
 variable "kv_backend" {
   type        = string
   description = "PKI backend path"
-}
-
-variable "vault_namespace" {
-  type    = string
-  default = "Vault namespace"
 }

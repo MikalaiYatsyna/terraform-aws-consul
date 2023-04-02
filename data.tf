@@ -11,8 +11,9 @@ data "aws_secretsmanager_secret_version" "root_token" {
 }
 
 data "kubernetes_secret" "consul_bootstrap_token" {
+  depends_on = [helm_release.consul-server]
   metadata {
-    name      = "consul-bootstrap-acl-token"
+    name      = local.bootstrap_token_secret_name
     namespace = var.namespace
   }
 }
