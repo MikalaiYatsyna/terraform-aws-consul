@@ -2,20 +2,18 @@ locals {
   app_name                      = "consul"
   ingress_host                  = "${local.app_name}.${var.domain}"
   consul_address                = "https://${local.ingress_host}"
-  connect_pki_path              = "connect-root"
-  connect_intermediate_pki_path = "connect-intermediate-${var.stack}"
   gossip_key                    = "gossip"
   consul_gossip_secret_path     = "consul/gossip"
   consul_gossip_read_path       = "${var.kv_backend}/data/${local.consul_gossip_secret_path}"
-
+  bootstrap_token_secret_name   =  "consul/bootstrap-acl"
+  bootstrap_token_read_path     =  "${var.kv_backend}/data/${local.bootstrap_token_secret_name}"
+  bootstrap_token_secret_key    = "token"
 }
 
 resource "helm_release" "consul-server" {
   depends_on = [
     vault_pki_secret_backend_root_cert.consul_root_cert,
-    vault_generic_secret.consul_gossip_key,
-    kubernetes_manifest.kubernetes_crds,
-    kubernetes_manifest.consul_crds
+    vault_generic_secret.consul_gossip_key
   ]
   name       = local.app_name
   namespace  = var.namespace
@@ -45,11 +43,7 @@ resource "helm_release" "consul-server" {
             consulServerRole = vault_kubernetes_auth_backend_role.consul_server.role_name
             consulClientRole : vault_kubernetes_auth_backend_role.consul_client.role_name
             consulCARole : vault_kubernetes_auth_backend_role.ca.role_name
-            connectCA = {
-              address             = "https://vault.${var.vault_namespace}.svc"
-              rootPKIPath         = local.connect_pki_path
-              intermediatePKIPath = local.connect_intermediate_pki_path
-            }
+            manageSystemACLsRole : vault_kubernetes_auth_backend_role.acl.role_name
             ca = {
               secretName = var.vault_server_cert_secret
               secretKey  = "ca.crt"
@@ -58,6 +52,10 @@ resource "helm_release" "consul-server" {
         }
         acls = {
           manageSystemACLs = true
+          bootstrapToken = {
+              secretName = local.bootstrap_token_read_path
+              secretKey = local.bootstrap_token_secret_key
+          }
         }
         metrics = {
           enabled = false
@@ -113,22 +111,6 @@ resource "helm_release" "consul-server" {
             "cert-manager.io/cluster-issuer"                                    = var.certificate_issuer
             "external-dns.alpha.kubernetes.io/hostname"                         = local.ingress_host
           })
-        }
-      }
-      connectInject = {
-        enabled = true
-        transparentProxy = {
-          transparentProxy = true
-        }
-        metrics = {
-          defaultEnabled = false
-        }
-      }
-      apiGateway = {
-        enabled = true
-        image   = "hashicorp/consul-api-gateway:${var.api_gateway_version}"
-        managedGatewayClass = {
-          useHostPorts = true
         }
       }
     })

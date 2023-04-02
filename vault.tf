@@ -3,10 +3,22 @@ resource "random_password" "gossip_key" {
   special = false
 }
 
+resource "random_password" "bootstrap_token" {
+  length  = 32
+  special = false
+}
+
 resource "vault_generic_secret" "consul_gossip_key" {
   path = "${var.kv_backend}/${local.consul_gossip_secret_path}"
   data_json = jsonencode({
     (local.gossip_key) = random_password.gossip_key.result
+  })
+}
+
+resource "vault_generic_secret" "consul_boostrap_token" {
+  path = "${var.kv_backend}/${local.bootstrap_token_secret_name}"
+  data_json = jsonencode({
+    (local.bootstrap_token_secret_key) = random_password.gossip_key.result
   })
 }
 
@@ -33,12 +45,6 @@ resource "vault_pki_secret_backend_role" "consul_server" {
   allow_localhost    = true
   generate_lease     = true
   max_ttl            = "720h"
-}
-
-resource "vault_mount" "connect_root" {
-  path        = "connect-root"
-  type        = "pki"
-  description = "PKI secrets engine for Consul Connect"
 }
 
 data "vault_policy_document" "consul_gossip" {
@@ -86,43 +92,16 @@ resource "vault_policy" "ca" {
   policy = data.vault_policy_document.ca.hcl
 }
 
-
-# Service mesh policy
-data "vault_policy_document" "service_mesh" {
+data "vault_policy_document" "acl" {
   rule {
-    path         = "/sys/mounts/${local.connect_pki_path}"
-    capabilities = ["create", "read", "update", "delete", "list"]
-  }
-  rule {
-    path         = "/sys/mounts/${local.connect_intermediate_pki_path}"
-    capabilities = ["create", "read", "update", "delete", "list"]
-  }
-  rule {
-    path         = "/sys/mounts/${local.connect_intermediate_pki_path}/tune"
-    capabilities = ["update"]
-  }
-  rule {
-    path         = "/${local.connect_pki_path}/*"
-    capabilities = ["create", "read", "update", "delete", "list"]
-  }
-  rule {
-    path = "/${local.connect_intermediate_pki_path}/*"
-
-    capabilities = ["create", "read", "update", "delete", "list"]
-  }
-  rule {
-    path         = "auth/token/renew-self"
-    capabilities = ["update"]
-  }
-  rule {
-    path         = "auth/token/lookup-self"
-    capabilities = ["read"]
+    path         = local.bootstrap_token_read_path
+    capabilities = ["read", "update"]
   }
 }
 
-resource "vault_policy" "connect" {
-  name   = "service-mesh-policy"
-  policy = data.vault_policy_document.service_mesh.hcl
+resource "vault_policy" "acl" {
+  name   = "ca-policy"
+  policy = data.vault_policy_document.acl.hcl
 }
 
 resource "vault_kubernetes_auth_backend_role" "consul_server" {
@@ -134,7 +113,7 @@ resource "vault_kubernetes_auth_backend_role" "consul_server" {
   token_max_ttl                    = 60 * 60 * 24 # 1 day
   token_policies = [
     vault_policy.consul_gossip.name, vault_policy.consul_server.name,
-    vault_policy.connect.name, vault_policy.ca.name
+    vault_policy.ca.name
   ]
 }
 
@@ -156,4 +135,14 @@ resource "vault_kubernetes_auth_backend_role" "ca" {
   token_ttl                        = 60 * 60 # 1 hour
   token_max_ttl                    = 60 * 60 # 1 hour
   token_policies                   = [vault_policy.ca.name]
+}
+
+resource "vault_kubernetes_auth_backend_role" "acl" {
+  backend                          = var.vault_k8s_path
+  role_name                        = "ca-role"
+  bound_service_account_names      = ["*"]
+  bound_service_account_namespaces = [var.namespace]
+  token_ttl                        = 60 * 60 # 1 hour
+  token_max_ttl                    = 60 * 60 # 1 hour
+  token_policies                   = [vault_policy.acl.name]
 }

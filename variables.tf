@@ -26,13 +26,13 @@ variable "certificate_issuer" {
 variable "server_replicas" {
   type        = number
   description = "Number of replicas to create"
-  default     = 1
+  default     = 3
 }
 
 variable "bootstrap_expect" {
   type        = number
   description = "Minimum numbers of replicas to consider service ready"
-  default     = 1
+  default     = 3
 }
 
 variable "vault_address" {
@@ -65,9 +65,4 @@ variable "pki_backend" {
 variable "kv_backend" {
   type        = string
   description = "PKI backend path"
-}
-
-variable "vault_namespace" {
-  type    = string
-  default = "Vault namespace"
 }
