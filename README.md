@@ -10,7 +10,7 @@ Terraform module to create Consul cluster on AWS EKS
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.67.0 |
 | <a name="requirement_consul"></a> [consul](#requirement\_consul) | 2.20.0 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | 2.9.0 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.18.1 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.27.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.4.3 |
 | <a name="requirement_vault"></a> [vault](#requirement\_vault) | 3.14.0 |
 
@@ -21,7 +21,7 @@ Terraform module to create Consul cluster on AWS EKS
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 4.67.0 |
 | <a name="provider_consul"></a> [consul](#provider\_consul) | 2.20.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.9.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.18.1 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.27.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
 | <a name="provider_vault"></a> [vault](#provider\_vault) | 3.14.0 |
 
@@ -54,7 +54,7 @@ No modules.
 | [aws_eks_cluster.eks_cluster](https://registry.terraform.io/providers/hashicorp/aws/4.67.0/docs/data-sources/eks_cluster) | data source |
 | [aws_eks_cluster_auth.eks_cluster_auth](https://registry.terraform.io/providers/hashicorp/aws/4.67.0/docs/data-sources/eks_cluster_auth) | data source |
 | [aws_secretsmanager_secret_version.root_token](https://registry.terraform.io/providers/hashicorp/aws/4.67.0/docs/data-sources/secretsmanager_secret_version) | data source |
-| [kubernetes_secret.consul_bootstrap_token](https://registry.terraform.io/providers/hashicorp/kubernetes/2.18.1/docs/data-sources/secret) | data source |
+| [kubernetes_secret.consul_bootstrap_token](https://registry.terraform.io/providers/hashicorp/kubernetes/2.27.0/docs/data-sources/secret) | data source |
 | [vault_policy_document.acl](https://registry.terraform.io/providers/hashicorp/vault/3.14.0/docs/data-sources/policy_document) | data source |
 | [vault_policy_document.ca](https://registry.terraform.io/providers/hashicorp/vault/3.14.0/docs/data-sources/policy_document) | data source |
 | [vault_policy_document.consul_gossip](https://registry.terraform.io/providers/hashicorp/vault/3.14.0/docs/data-sources/policy_document) | data source |
