@@ -8,7 +8,7 @@ Terraform module to create Consul cluster on AWS EKS
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | 1.7.5 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.67.0 |
-| <a name="requirement_consul"></a> [consul](#requirement\_consul) | 2.17.0 |
+| <a name="requirement_consul"></a> [consul](#requirement\_consul) | 2.20.0 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | 2.9.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.18.1 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.4.3 |
@@ -19,7 +19,7 @@ Terraform module to create Consul cluster on AWS EKS
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 4.67.0 |
-| <a name="provider_consul"></a> [consul](#provider\_consul) | 2.17.0 |
+| <a name="provider_consul"></a> [consul](#provider\_consul) | 2.20.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.9.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.18.1 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
@@ -33,7 +33,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [consul_acl_policy.policy](https://registry.terraform.io/providers/hashicorp/consul/2.17.0/docs/resources/acl_policy) | resource |
+| [consul_acl_policy.policy](https://registry.terraform.io/providers/hashicorp/consul/2.20.0/docs/resources/acl_policy) | resource |
 | [helm_release.consul-server](https://registry.terraform.io/providers/hashicorp/helm/2.9.0/docs/resources/release) | resource |
 | [random_password.bootstrap_token](https://registry.terraform.io/providers/hashicorp/random/3.4.3/docs/resources/password) | resource |
 | [random_password.gossip_key](https://registry.terraform.io/providers/hashicorp/random/3.4.3/docs/resources/password) | resource |
