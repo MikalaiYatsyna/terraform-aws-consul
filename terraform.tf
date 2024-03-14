@@ -7,23 +7,23 @@ terraform {
     }
     kubernetes = {
       version = "2.18.1"
-      source = "hashicorp/kubernetes"
+      source  = "hashicorp/kubernetes"
     }
     helm = {
       version = "2.9.0"
-      source = "hashicorp/helm"
+      source  = "hashicorp/helm"
     }
     vault = {
       version = "3.14.0"
-      source = "hashicorp/vault"
+      source  = "hashicorp/vault"
     }
     consul = {
       version = "2.17.0"
-      source = "hashicorp/consul"
+      source  = "hashicorp/consul"
     }
     random = {
       version = "3.4.3"
-      source = "hashicorp/random"
+      source  = "hashicorp/random"
     }
   }
 }
