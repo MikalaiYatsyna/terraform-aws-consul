@@ -14,7 +14,7 @@ terraform {
       source  = "hashicorp/helm"
     }
     vault = {
-      version = "3.14.0"
+      version = "3.25.0"
       source  = "hashicorp/vault"
     }
     consul = {
