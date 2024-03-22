@@ -20,7 +20,6 @@ provider "helm" {
   }
 }
 
-
 provider "vault" {
   address = var.vault_address
   token   = jsondecode(data.aws_secretsmanager_secret_version.root_token.secret_string)["token"]
