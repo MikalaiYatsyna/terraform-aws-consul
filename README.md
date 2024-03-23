@@ -2,6 +2,7 @@
 Terraform module to create Consul cluster on AWS EKS
 
 <!-- BEGIN_TF_DOCS -->
+
 ## Requirements
 
 | Name | Version |
@@ -13,7 +14,6 @@ Terraform module to create Consul cluster on AWS EKS
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.27.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.6.0 |
 | <a name="requirement_vault"></a> [vault](#requirement\_vault) | 4.0.0 |
-
 ## Providers
 
 | Name | Version |
@@ -24,11 +24,9 @@ Terraform module to create Consul cluster on AWS EKS
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.27.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.6.0 |
 | <a name="provider_vault"></a> [vault](#provider\_vault) | 4.0.0 |
-
 ## Modules
 
 No modules.
-
 ## Resources
 
 | Name | Type |
@@ -51,23 +49,23 @@ No modules.
 | [vault_policy.ca](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/resources/policy) | resource |
 | [vault_policy.consul_gossip](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/resources/policy) | resource |
 | [vault_policy.consul_server](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/resources/policy) | resource |
-| [aws_eks_cluster.eks_cluster](https://registry.terraform.io/providers/hashicorp/aws/5.41.0/docs/data-sources/eks_cluster) | data source |
-| [aws_eks_cluster_auth.eks_cluster_auth](https://registry.terraform.io/providers/hashicorp/aws/5.41.0/docs/data-sources/eks_cluster_auth) | data source |
 | [aws_secretsmanager_secret_version.root_token](https://registry.terraform.io/providers/hashicorp/aws/5.41.0/docs/data-sources/secretsmanager_secret_version) | data source |
 | [kubernetes_secret.consul_bootstrap_token](https://registry.terraform.io/providers/hashicorp/kubernetes/2.27.0/docs/data-sources/secret) | data source |
 | [vault_policy_document.acl](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/data-sources/policy_document) | data source |
 | [vault_policy_document.ca](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/data-sources/policy_document) | data source |
 | [vault_policy_document.consul_gossip](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/data-sources/policy_document) | data source |
 | [vault_policy_document.consul_server](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/data-sources/policy_document) | data source |
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_bootstrap_expect"></a> [bootstrap\_expect](#input\_bootstrap\_expect) | Minimum numbers of replicas to consider service ready | `number` | `3` | no |
 | <a name="input_certificate_issuer"></a> [certificate\_issuer](#input\_certificate\_issuer) | Cert manager issuer name | `string` | n/a | yes |
-| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of EKS cluster | `string` | n/a | yes |
+| <a name="input_cluster_ca"></a> [cluster\_ca](#input\_cluster\_ca) | CA certificate of the cluster. | `string` | n/a | yes |
+| <a name="input_cluster_endpoint"></a> [cluster\_endpoint](#input\_cluster\_endpoint) | Endpoint of the cluster. | `string` | n/a | yes |
 | <a name="input_domain"></a> [domain](#input\_domain) | Root application domain name | `string` | n/a | yes |
+| <a name="input_k8s_exec_args"></a> [k8s\_exec\_args](#input\_k8s\_exec\_args) | Args for Kubernetes provider exec plugin. Example command ['eks', 'get-token', '--cluster-name', '{clusterName}}'] | `list(string)` | n/a | yes |
+| <a name="input_k8s_exec_command"></a> [k8s\_exec\_command](#input\_k8s\_exec\_command) | Command name for Kubernetes provider exec plugin. Example - 'aws | `string` | n/a | yes |
 | <a name="input_kv_backend"></a> [kv\_backend](#input\_kv\_backend) | PKI backend path | `string` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace for Consul release | `string` | n/a | yes |
 | <a name="input_pki_backend"></a> [pki\_backend](#input\_pki\_backend) | PKI backend path | `string` | n/a | yes |
@@ -77,7 +75,6 @@ No modules.
 | <a name="input_vault_k8s_path"></a> [vault\_k8s\_path](#input\_vault\_k8s\_path) | Vault path of K8s auth | `string` | `"kubernetes"` | no |
 | <a name="input_vault_server_cert_secret"></a> [vault\_server\_cert\_secret](#input\_vault\_server\_cert\_secret) | Secret containing Vault CA | `string` | n/a | yes |
 | <a name="input_vault_token_secret_id"></a> [vault\_token\_secret\_id](#input\_vault\_token\_secret\_id) | Id vault root token secret in AWS Secret Manager | `string` | n/a | yes |
-
 ## Outputs
 
 No outputs.
