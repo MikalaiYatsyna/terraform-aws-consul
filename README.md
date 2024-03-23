@@ -7,7 +7,7 @@ Terraform module to create Consul cluster on AWS EKS
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | 1.7.5 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.41.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.42.0 |
 | <a name="requirement_consul"></a> [consul](#requirement\_consul) | 2.20.0 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | 2.12.1 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.27.0 |
@@ -18,7 +18,7 @@ Terraform module to create Consul cluster on AWS EKS
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.41.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.42.0 |
 | <a name="provider_consul"></a> [consul](#provider\_consul) | 2.20.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.12.1 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.27.0 |
@@ -51,9 +51,9 @@ No modules.
 | [vault_policy.ca](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/resources/policy) | resource |
 | [vault_policy.consul_gossip](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/resources/policy) | resource |
 | [vault_policy.consul_server](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/resources/policy) | resource |
-| [aws_eks_cluster.eks_cluster](https://registry.terraform.io/providers/hashicorp/aws/5.41.0/docs/data-sources/eks_cluster) | data source |
-| [aws_eks_cluster_auth.eks_cluster_auth](https://registry.terraform.io/providers/hashicorp/aws/5.41.0/docs/data-sources/eks_cluster_auth) | data source |
-| [aws_secretsmanager_secret_version.root_token](https://registry.terraform.io/providers/hashicorp/aws/5.41.0/docs/data-sources/secretsmanager_secret_version) | data source |
+| [aws_eks_cluster.eks_cluster](https://registry.terraform.io/providers/hashicorp/aws/5.42.0/docs/data-sources/eks_cluster) | data source |
+| [aws_eks_cluster_auth.eks_cluster_auth](https://registry.terraform.io/providers/hashicorp/aws/5.42.0/docs/data-sources/eks_cluster_auth) | data source |
+| [aws_secretsmanager_secret_version.root_token](https://registry.terraform.io/providers/hashicorp/aws/5.42.0/docs/data-sources/secretsmanager_secret_version) | data source |
 | [kubernetes_secret.consul_bootstrap_token](https://registry.terraform.io/providers/hashicorp/kubernetes/2.27.0/docs/data-sources/secret) | data source |
 | [vault_policy_document.acl](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/data-sources/policy_document) | data source |
 | [vault_policy_document.ca](https://registry.terraform.io/providers/hashicorp/vault/4.0.0/docs/data-sources/policy_document) | data source |
