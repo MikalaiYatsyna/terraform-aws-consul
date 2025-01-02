@@ -18,7 +18,7 @@ terraform {
       source  = "hashicorp/vault"
     }
     consul = {
-      version = "2.20.0"
+      version = "2.21.0"
       source  = "hashicorp/consul"
     }
     random = {
