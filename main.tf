@@ -20,7 +20,7 @@ resource "helm_release" "consul-server" {
   atomic     = true
   chart      = "consul"
   repository = "https://helm.releases.hashicorp.com"
-  version    = "1.4.0"
+  version    = "1.6.1"
 
   values = [
     yamlencode({
